@@ -58,6 +58,9 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
             ):
                 if not srv.mapping():
                     continue
+                if srv.name in ['environment']:
+                    if model.find('aircondition') >= 0:
+                        continue
                 cfg = {
                     **config,
                     'name': f"{config.get('name')} {srv.description}"
